@@ -33,13 +33,13 @@ Configuration
 -------------
 Once the SDK is imported, it has to be assigned to a namespace.
 
-```js
+```javascript
 var Timeline = require("ls-js-sdk");
 ```
 
 The above sample imports the SDK bundled with browserify and exposes a public api within that namespace. Before it can be used, it needs to be initialised with unique *api_key* and *api_id* mentioned in the Prerequisites section of this document.
 
-```js
+```javascript
 Timeline.init({
     api_key: "YOUR_API_KEY",
     api_id: "YOUR_API_ID"
@@ -56,7 +56,44 @@ Additionally, initialisation method accepts the following optional parameters:
 
 Usage
 -----
+## api()
+Make an api call to an existing enpoint and handle a reponse in a callback.
+For available endpoints and their parameters please refer to Lifestreams Streaming API documentation.
 
+### Parameters
+name | description | required
+--- | --- | ---
+url | An API endpoint URL | true
+method | Http request method (GET, POST, PUT, DELETE) | true
+data | Data object to pass to an api call | false
+callback | A JavaScript callback method to handle the response | true
+### Examples
+Retrieve a list of timelines
+
+```javascript
+Timeline.api("/timeline", "get", function(response) {
+    // do something with a response
+    response.forEach(function(item) {
+        console.log("Timeline name: " + item.name);
+    }):
+});
+```
+
+Create a new timeline
+
+```javascript
+Timeline.api("/timeline", "post", {
+    "name": "My random Timeline name"
+}, function(response) {
+    if (response.error) {
+        // handle error
+        console.log(response.error + ": " + response.message);
+    } else {
+        // handle successful response
+        console.log(response.name + " created successfuly!"
+    }
+});
+```
 Testing
 -------
 ### Test suite
