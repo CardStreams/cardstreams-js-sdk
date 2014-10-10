@@ -48,7 +48,10 @@ module.exports = function (grunt) {
               src: ["*.js", "**/*.js"],
               dest: ""
             }
-          ]
+          ],
+          preBundleCB: function (b) {
+            b.require("./lib/ls-js-sdk.js", {expose: 'ls-js-sdk'});
+          }
         }
       }
     }
