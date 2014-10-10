@@ -83,8 +83,23 @@ describe("LS-JS-SDK", function() {
       expect(Timeline.api).toHaveBeenCalled();
     });
 
-    it("should set request endpoint properly", function() {
-      var url = "http://localhost:6100/v2/url";
+    it("should set request endpoint properly with a default url", function() {
+      var url = "https://api.lifestreams.com/v2/url";
+      expect(req.url).toBe(url);
+    });
+
+    it("should set request endpoint properly with a provided url", function() {
+      var url = "https://test/t";
+
+      Timeline.init({
+        api_id: "53e21090dd574893d4000024",
+        api_key: "53298519-5d13-454d-99be-4c0fe22ced88",
+        api_url: "https://test"
+      });
+
+      Timeline.api("/t", "get", function(){});
+
+      req = jasmine.Ajax.requests.mostRecent();
       expect(req.url).toBe(url);
     });
 
