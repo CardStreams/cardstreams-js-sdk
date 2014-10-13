@@ -31,16 +31,10 @@ When done and successful, the whole package will be bundled in */build* director
 
 Configuration
 -------------
-Once the SDK is imported, it has to be assigned to a namespace.
+Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised with unique *api_key* and *api_id* mentioned in the Prerequisites section of this document.
 
 ```javascript
-var Timeline = require("ls-js-sdk");
-```
-
-The above sample imports the SDK bundled with browserify and exposes a public api within the *Timeline* namespace. Before it can be used, it needs to be initialised with unique *api_key* and *api_id* mentioned in the Prerequisites section of this document.
-
-```javascript
-Timeline.init({
+LS.init({
     api_key: "YOUR_API_KEY",
     api_id: "YOUR_API_ID"
 });
@@ -56,7 +50,7 @@ Additionally, initialisation method accepts the following optional parameters:
 
 Usage
 -----
-## api()
+## LS.api()
 Make an api call to an existing enpoint and handle a reponse in a callback.
 For available endpoints and their parameters please refer to Lifestreams Streaming API documentation.
 
@@ -71,7 +65,7 @@ callback | A JavaScript callback method to handle the response | true
 Retrieve a list of timelines
 
 ```javascript
-Timeline.api("/timeline", "get", function(response) {
+LS.api("/timeline", "get", function(response) {
     // do something with a response
     response.forEach(function(item) {
         console.log("Timeline name: " + item.name);
@@ -82,7 +76,7 @@ Timeline.api("/timeline", "get", function(response) {
 Create a new timeline
 
 ```javascript
-Timeline.api("/timeline", "post", {
+LS.api("/timeline", "post", {
     "name": "My random Timeline name"
 }, function(response) {
     if (response.error) {
@@ -94,7 +88,7 @@ Timeline.api("/timeline", "post", {
     }
 });
 ```
-## subscribe()
+## LS.subscribe()
 Establish a real time socket connection to be notified about various data events in the API, depending on the channel subscribed. 
 
 ### Parameters

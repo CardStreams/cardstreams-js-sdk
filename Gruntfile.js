@@ -49,8 +49,8 @@ module.exports = function (grunt) {
               dest: ""
             }
           ],
-          preBundleCB: function (b) {
-            b.require("./lib/ls-js-sdk.js", {expose: 'ls-js-sdk'});
+          browserifyOptions: {
+            standalone: "LS"
           }
         }
       }
