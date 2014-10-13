@@ -213,6 +213,18 @@ Response 200 (application/json)
             }
         ]
 
+### Examples
+Get notified about new cards.
+
+```javascript
+LS.subscribe("/cards/53ea722eecb5669c1d000013", function(ev) {
+    // we're only interested in *created* event in this example
+    if (ev.type === "created") {
+      console.log(ev.data)
+    }
+});
+```
+
 Testing
 -------
 ### Test suite
