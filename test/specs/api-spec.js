@@ -5,6 +5,16 @@ describe("LS-JS-SDK", function() {
   var sha1 = require("../../lib/ext/sha1");
   var TestResponses = require("../helpers/responses");
 
+  describe("SDK package", function() {
+    it("should be included as a CommonJS module", function(){
+      expect(Timeline).toBeDefined();
+    });
+
+    it("should expose a global LS namespace", function() {
+      expect(window.LS).toBeDefined();
+    });
+  });
+
   describe("SDK#init", function() {
 
     it("should be a publicly available method", function() {

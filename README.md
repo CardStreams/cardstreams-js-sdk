@@ -27,7 +27,7 @@ npm install
 grunt install
 ```
 
-When done and successful, the whole package will be bundled in */build* directory and available in both minified and un-minified formats.
+When done and successful, the whole package will be bundled in */build* directory and available in both minified and un-minified formats as a standalone browserify package.
 
 Configuration
 -------------
