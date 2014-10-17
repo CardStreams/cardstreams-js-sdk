@@ -199,7 +199,7 @@ callback | A callback to handle errors and response data | Function | true
 Obtain cards from a given timeline.
 ### Parameters
 name | description | type | required | default
---- | --- | --- | ---
+--- | --- | --- | --- | ---
 timelineID | A timeline ID string | String | true | -
 ts | Timestamp to use as a reference starting point within the timeline. By default, this takes the value of the current timestamp. | Number | false | now() 
 direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
