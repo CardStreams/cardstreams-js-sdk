@@ -239,4 +239,190 @@ describe("LS-JS-SDK", function() {
     });
 
   });
+
+  describe("Glucose mixins", function() {
+
+    var callback = function(err, data) {
+      if (!err) {
+        return data
+      } else {
+        throw err;
+      }
+    };
+
+    var data = {};
+
+    it("should provide getUsers method", function() {
+      spyOn(Timeline, "getUsers").and.callThrough();;
+      Timeline.getUsers(callback);
+      expect(Timeline.getUsers).toHaveBeenCalled();
+      expect(Timeline.getUsers).not.toThrow();
+      expect(Timeline.getUsers).toHaveBeenCalledWith(jasmine.any(Function));
+      expect(function() {
+        Timeline.getUsers(callback);
+      }).not.toThrow();
+    });
+
+    it("should provide createUser method", function() {
+      spyOn(Timeline, "createUser").and.callThrough();;
+      Timeline.createUser(data, callback);
+      expect(Timeline.createUser).toHaveBeenCalled();
+      expect(Timeline.createUser).toHaveBeenCalledWith(jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.createUser(data, callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getUser method", function() {
+      spyOn(Timeline, "getUser").and.callThrough();;
+      Timeline.getUser("userid", callback);
+      expect(Timeline.getUser).toHaveBeenCalled();
+      expect(Timeline.getUser).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getUser("userid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getMemberships method", function() {
+      spyOn(Timeline, "getMemberships").and.callThrough();
+      Timeline.getMemberships("userid", callback);
+      expect(Timeline.getMemberships).toHaveBeenCalled();
+      expect(Timeline.getMemberships).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getMemberships("userid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getMembership method", function() {
+      spyOn(Timeline, "getMembership").and.callThrough();;
+      Timeline.getMembership("userid", "timelineid", callback);
+      expect(Timeline.getMembership).toHaveBeenCalled();
+      expect(Timeline.getMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getMembership("userid", "timelineid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide addMembership method", function() {
+      spyOn(Timeline, "addMembership").and.callThrough();;
+      Timeline.addMembership("userid", data, callback);
+      expect(Timeline.addMembership).toHaveBeenCalled();
+      expect(Timeline.addMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.addMembership("userid", data, callback);
+      }).not.toThrow();
+    });
+
+    it("should provide updateMembership method", function() {
+      spyOn(Timeline, "updateMembership").and.callThrough();;
+      Timeline.updateMembership("userid", "timelineid", data, callback);
+      expect(Timeline.updateMembership).toHaveBeenCalled();
+      expect(Timeline.updateMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.updateMembership("userid", "timelineid", data, callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getTimelines method", function() {
+      spyOn(Timeline, "getTimelines").and.callThrough();;
+      Timeline.getTimelines(callback);
+      expect(Timeline.getTimelines).toHaveBeenCalled();
+      expect(Timeline.getTimelines).not.toThrow();
+      expect(Timeline.getTimelines).toHaveBeenCalledWith(jasmine.any(Function));
+      expect(function() {
+        Timeline.getTimelines(callback);
+      }).not.toThrow();
+    });
+
+    it("should provide createTimeline method", function() {
+      spyOn(Timeline, "createTimeline").and.callThrough();;
+      Timeline.createTimeline(data, callback);
+      expect(Timeline.createTimeline).toHaveBeenCalled();
+      expect(Timeline.createTimeline).toHaveBeenCalledWith(jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.createTimeline(data, callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getTimeline method", function() {
+      spyOn(Timeline, "getTimeline").and.callThrough();;
+      Timeline.getTimeline("timelineid", callback);
+      expect(Timeline.getTimeline).toHaveBeenCalled();
+      expect(Timeline.getTimeline).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getTimeline("timelineid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getCard method", function() {
+      spyOn(Timeline, "getCard").and.callThrough();;
+      Timeline.getCard("timelineid", "cardid", callback);
+      expect(Timeline.getCard).toHaveBeenCalled();
+      expect(Timeline.getCard).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getCard("timelineid", "cardid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getCards method", function() {
+      spyOn(Timeline, "getCards").and.callThrough();;
+      Timeline.getCards("timelineid", callback);
+      expect(Timeline.getCards).toHaveBeenCalled();
+      expect(Timeline.getCards).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getCards("timelineid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide createCard method", function() {
+      spyOn(Timeline, "createCard").and.callThrough();;
+      Timeline.createCard("timelineid", data, callback);
+      expect(Timeline.createCard).toHaveBeenCalled();
+      expect(Timeline.createCard).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.createCard("timelineid", data, callback);
+      }).not.toThrow();
+    });
+
+    it("should provide updateCard method", function() {
+      spyOn(Timeline, "updateCard").and.callThrough();
+      Timeline.updateCard("timelineid", "cardid", data, callback);
+      expect(Timeline.updateCard).toHaveBeenCalled();
+      expect(Timeline.updateCard).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.updateCard("timelineid", "cardid", data, callback);
+      }).not.toThrow();
+    });
+
+    it("should provide deleteCard method", function() {
+      spyOn(Timeline, "deleteCard").and.callThrough();;
+      Timeline.deleteCard("timelineid", "cardid", callback);
+      expect(Timeline.deleteCard).toHaveBeenCalled();
+      expect(Timeline.deleteCard).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.deleteCard("timelineid", "cardid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getComments method", function() {
+      spyOn(Timeline, "getComments").and.callThrough();;
+      Timeline.getComments("timelineid", "cardid", callback);
+      expect(Timeline.getComments).toHaveBeenCalled();
+      expect(Timeline.getComments).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getComments("timelineid", "cardid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide createComment method", function() {
+      spyOn(Timeline, "createComment").and.callThrough();;
+      Timeline.createComment("timelineid", "cardid", data, callback);
+      expect(Timeline.createComment).toHaveBeenCalled();
+      expect(Timeline.createComment).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.createComment("timelineid", "cardid", data, callback);
+      }).not.toThrow();
+    });
+
+  });
 });
