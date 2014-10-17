@@ -256,7 +256,6 @@ describe("LS-JS-SDK", function() {
       spyOn(Timeline, "getUsers").and.callThrough();;
       Timeline.getUsers(callback);
       expect(Timeline.getUsers).toHaveBeenCalled();
-      expect(Timeline.getUsers).not.toThrow();
       expect(Timeline.getUsers).toHaveBeenCalledWith(jasmine.any(Function));
       expect(function() {
         Timeline.getUsers(callback);
@@ -303,13 +302,13 @@ describe("LS-JS-SDK", function() {
       }).not.toThrow();
     });
 
-    it("should provide addMembership method", function() {
-      spyOn(Timeline, "addMembership").and.callThrough();;
-      Timeline.addMembership("userid", data, callback);
-      expect(Timeline.addMembership).toHaveBeenCalled();
-      expect(Timeline.addMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
+    it("should provide createMembership method", function() {
+      spyOn(Timeline, "createMembership").and.callThrough();;
+      Timeline.createMembership("userid", data, callback);
+      expect(Timeline.createMembership).toHaveBeenCalled();
+      expect(Timeline.createMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
       expect(function() {
-        Timeline.addMembership("userid", data, callback);
+        Timeline.createMembership("userid", data, callback);
       }).not.toThrow();
     });
 
@@ -327,7 +326,6 @@ describe("LS-JS-SDK", function() {
       spyOn(Timeline, "getTimelines").and.callThrough();;
       Timeline.getTimelines(callback);
       expect(Timeline.getTimelines).toHaveBeenCalled();
-      expect(Timeline.getTimelines).not.toThrow();
       expect(Timeline.getTimelines).toHaveBeenCalledWith(jasmine.any(Function));
       expect(function() {
         Timeline.getTimelines(callback);
