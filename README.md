@@ -43,7 +43,7 @@ LS.init({
 Additionally, initialisation method accepts the following optional parameters:
 
 | param name | description | type
-| --- | --- |
+| --- | --- | --- |
 | api_user | A user id, which, if provided informs the backend to consider the given user as logged in. | String |
 | api_url | API endpoint URL, by default pointing to the latest production instance | String |
 | socket_url | Socket endpoint URL, by default pointing to the latest production instance | String |
@@ -56,7 +56,7 @@ For available endpoints and their parameters please refer to Lifestreams Streami
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 url | An API endpoint name | String | true
 method | Http request method | ENUM: GET, POST, PATCH, DELETE | true
 data | Data object to pass to an api call | Object | false
@@ -93,7 +93,7 @@ Retrieve details about a user.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 userId | A user ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
@@ -115,7 +115,7 @@ List the users created under the scope of the authenticated application.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 callback | A callback to handle errors and response data | Function | true
 
 ## LS.createUser()
@@ -123,7 +123,7 @@ Create an application user.
 
 ### Parameters
 name | description | type |required
---- | --- | ---
+--- | --- | --- | ---
 data | A data object with user information, currently supported properties: username, description, email, userAvatar | Object | true
 callback | A callback to handle errors and response data | Function | true
 
@@ -144,7 +144,7 @@ Retrieve a list of memberships for a given user.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 userId | A user ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
@@ -153,7 +153,7 @@ Retrieve a user membership information in a given timeline scope.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 userId | A user ID string | String | true
 timelineId | A timeline ID string | String | true
 callback | A callback to handle errors and response data | Function | true
@@ -163,7 +163,7 @@ Modify a membership information for a given user and timeline.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 userId | A user ID string | String | true
 timelineId | A timeline ID string | String | true
 data | An object containing data to modify | Object | true
@@ -174,7 +174,7 @@ Retrieve a list of timelines available for authenticated user.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 callback | A callback to handle errors and response data | Function | true
 
 ## LS.getTimeline()
@@ -182,7 +182,7 @@ Retrieve information about a timeline.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 timelineID | A timeline ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
@@ -191,7 +191,7 @@ Create a new timeline.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 data | Create a new timeline. The request body should contain the following properties: *name*: A name or title (not necessarily unique) for the timeline (required); *description*: (optional) A description of the timeline | Object | true
 callback | A callback to handle errors and response data | Function | true
 
@@ -199,7 +199,7 @@ callback | A callback to handle errors and response data | Function | true
 Obtain cards from a given timeline.
 ### Parameters
 name | description | type | required | default
---- | --- | ---
+--- | --- | --- | ---
 timelineID | A timeline ID string | String | true | -
 ts | Timestamp to use as a reference starting point within the timeline. By default, this takes the value of the current timestamp. | Number | false | now() 
 direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
@@ -216,7 +216,7 @@ Retrieve contents of a card.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 timelineID | A timeline ID string | String | true
 cardID | A card ID string | String | true
 callback | A callback to handle errors and response data | Function | true
@@ -226,7 +226,7 @@ Add card to a timeline.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 timelineID | A timeline ID string | String | true
 data | A data object containing information about a card. | Object | true
 callback | A callback to handle errors and response data | Function | true
@@ -236,7 +236,7 @@ Modify contents of a card.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 timelineID | A timeline ID string | String | true
 cardId | A cardID string | String | true
 data | A data object containing modified information about a card. | Object | true 
@@ -247,7 +247,7 @@ Retrieve comments for a given card.
 
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 timelineID | A timeline ID string | String | true
 cardID | A card ID string | String | true
 callback | A callback to handle errors and response data | Function | true
@@ -256,7 +256,7 @@ callback | A callback to handle errors and response data | Function | true
 Create a comment and attach it to a given card.
 ### Parameters
 name | description | type | required
---- | --- | ---
+--- | --- | --- | ---
 timelineID | A timeline ID string | String | true
 cardID | A card ID string | String | true
 data | A data object containing modified information about a card. | Object | true 
@@ -266,10 +266,10 @@ callback | A callback to handle errors and response data | Function | true
 Establish a real time socket connection to be notified about various data events in the API, depending on the channel subscribed. 
 
 ### Parameters
-name | description | required
---- | --- | ---
-channel | A socket endpoint name | true
-callback | A JavaScript callback method to handle the response | true
+name | description | type | required
+--- | --- | --- | ---
+channel | A socket endpoint name | String | true
+callback | A JavaScript callback method to handle the response | Function | true
 
 ### Channels and Events
 ### /cards channel
