@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           "dist/api.js": [
-            "lib/*.js"
+            "lib/ls-js-sdk.js"
           ]
         },
         options: {
