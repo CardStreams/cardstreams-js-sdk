@@ -2,7 +2,6 @@ describe("LS-JS-SDK", function() {
   "use strict";
 
   var Timeline = require("../../lib/ls-js-sdk");
-  var sha1 = require("../../lib/ext/sha1");
   var TestResponses = require("../helpers/responses");
 
   describe("SDK package", function() {
@@ -21,38 +20,25 @@ describe("LS-JS-SDK", function() {
       spyOn(Timeline, "init");
 
       Timeline.init({
-        api_id: "53e21090dd574893d4000024",
-        api_key: "53298519-5d13-454d-99be-4c0fe22ced88"
+        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh"
       });
 
       expect(Timeline.init).toHaveBeenCalled();
     });
 
-    it("should not throw an Error when configuration object contains API KEY and API ID", function() {
+    it("should not throw an Error when configuration object contains Consumer Key", function() {
 
       expect(function() {
         Timeline.init({
-          api_id: "53e21090dd574893d4000024",
-          api_key: "53298519-5d13-454d-99be-4c0fe22ced88"
+          consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh"
         });
       }).not.toThrow();
     });
 
-    it("should throw an Error when api_key is not provided", function() {
+    it("should throw an Error when consumer_key is not provided", function() {
 
       expect(function() {
-        Timeline.init({
-          api_id: "53e21090dd574893d4000024"
-        });
-      }).toThrow();
-    });
-
-    it("should throw an Error when api_id is not provided", function() {
-
-      expect(function() {
-        Timeline.init({
-          api_key: "53298519-5d13-454d-99be-4c0fe22ced88"
-        });
+        Timeline.init({});
       }).toThrow();
     });
 
@@ -74,8 +60,7 @@ describe("LS-JS-SDK", function() {
       };
 
       Timeline.init({
-        api_id: "53e21090dd574893d4000024",
-        api_key: "53298519-5d13-454d-99be-4c0fe22ced88"
+        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh"
       });
 
       Timeline.api("/url", "post", data, callback);
@@ -94,7 +79,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should set request endpoint properly with a default url", function() {
-      var url = "https://api.lifestreams.com/v2/url";
+      var url = "https://api.lifestreams.com/beta1/url";
       expect(req.url).toBe(url);
     });
 
@@ -102,8 +87,7 @@ describe("LS-JS-SDK", function() {
       var url = "https://test/t";
 
       Timeline.init({
-        api_id: "53e21090dd574893d4000024",
-        api_key: "53298519-5d13-454d-99be-4c0fe22ced88",
+        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh",
         api_url: "https://test"
       });
 
@@ -131,18 +115,8 @@ describe("LS-JS-SDK", function() {
       expect(req.requestHeaders["Content-Type"]).toBe("application/json;charset=UTF-8");
     });
 
-    it("should set the X-Auth-ApiKeyId request header", function() {
-      expect(req.requestHeaders["X-Auth-ApiKeyId"]).toBe("53e21090dd574893d4000024");
-    });
-
-    it("should set the X-Auth-Timestamp request header", function() {
-      expect(req.requestHeaders["X-Auth-Timestamp"]).toBe(Date.now() / 1000 | 0);
-    });
-
-    it("should set the signature hash correctly", function() {
-      var timestamp = Date.now() / 1000 | 0
-      var hash = new sha1("53298519-5d13-454d-99be-4c0fe22ced88" + timestamp, "TEXT");
-      expect(req.requestHeaders["X-Auth-Signature"]).toBe(hash.getHash("SHA-1", "HEX"));
+    it("should set the X-Lifestreams-ConsumerKey request header", function() {
+      expect(req.requestHeaders["X-Lifestreams-ConsumerKey"]).toBe("SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh");
     });
 
     it("should define an onreadystatechange handler", function() {
@@ -253,7 +227,7 @@ describe("LS-JS-SDK", function() {
     var data = {};
 
     it("should provide getUsers method", function() {
-      spyOn(Timeline, "getUsers").and.callThrough();;
+      spyOn(Timeline, "getUsers").and.callThrough();
       Timeline.getUsers(callback);
       expect(Timeline.getUsers).toHaveBeenCalled();
       expect(Timeline.getUsers).toHaveBeenCalledWith(jasmine.any(Function));
@@ -263,7 +237,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide createUser method", function() {
-      spyOn(Timeline, "createUser").and.callThrough();;
+      spyOn(Timeline, "createUser").and.callThrough();
       Timeline.createUser(data, callback);
       expect(Timeline.createUser).toHaveBeenCalled();
       expect(Timeline.createUser).toHaveBeenCalledWith(jasmine.any(Object), jasmine.any(Function));
@@ -273,7 +247,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide getUser method", function() {
-      spyOn(Timeline, "getUser").and.callThrough();;
+      spyOn(Timeline, "getUser").and.callThrough();
       Timeline.getUser("userid", callback);
       expect(Timeline.getUser).toHaveBeenCalled();
       expect(Timeline.getUser).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
@@ -293,7 +267,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide getMembership method", function() {
-      spyOn(Timeline, "getMembership").and.callThrough();;
+      spyOn(Timeline, "getMembership").and.callThrough();
       Timeline.getMembership("userid", "timelineid", callback);
       expect(Timeline.getMembership).toHaveBeenCalled();
       expect(Timeline.getMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
@@ -303,7 +277,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide createMembership method", function() {
-      spyOn(Timeline, "createMembership").and.callThrough();;
+      spyOn(Timeline, "createMembership").and.callThrough();
       Timeline.createMembership("userid", data, callback);
       expect(Timeline.createMembership).toHaveBeenCalled();
       expect(Timeline.createMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
@@ -313,7 +287,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide updateMembership method", function() {
-      spyOn(Timeline, "updateMembership").and.callThrough();;
+      spyOn(Timeline, "updateMembership").and.callThrough();
       Timeline.updateMembership("userid", "timelineid", data, callback);
       expect(Timeline.updateMembership).toHaveBeenCalled();
       expect(Timeline.updateMembership).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
@@ -323,7 +297,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide getTimelines method", function() {
-      spyOn(Timeline, "getTimelines").and.callThrough();;
+      spyOn(Timeline, "getTimelines").and.callThrough();
       Timeline.getTimelines(callback);
       expect(Timeline.getTimelines).toHaveBeenCalled();
       expect(Timeline.getTimelines).toHaveBeenCalledWith(jasmine.any(Function));
@@ -333,7 +307,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide createTimeline method", function() {
-      spyOn(Timeline, "createTimeline").and.callThrough();;
+      spyOn(Timeline, "createTimeline").and.callThrough();
       Timeline.createTimeline(data, callback);
       expect(Timeline.createTimeline).toHaveBeenCalled();
       expect(Timeline.createTimeline).toHaveBeenCalledWith(jasmine.any(Object), jasmine.any(Function));
@@ -343,7 +317,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide getTimeline method", function() {
-      spyOn(Timeline, "getTimeline").and.callThrough();;
+      spyOn(Timeline, "getTimeline").and.callThrough();
       Timeline.getTimeline("timelineid", callback);
       expect(Timeline.getTimeline).toHaveBeenCalled();
       expect(Timeline.getTimeline).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
@@ -352,8 +326,28 @@ describe("LS-JS-SDK", function() {
       }).not.toThrow();
     });
 
+    it("should provide deleteTimeline method", function() {
+      spyOn(Timeline, "deleteTimeline").and.callThrough();
+      Timeline.deleteTimeline("timelineid", callback);
+      expect(Timeline.deleteTimeline).toHaveBeenCalled();
+      expect(Timeline.deleteTimeline).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.deleteTimeline("timelineid", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide updateTimeline method", function() {
+      spyOn(Timeline, "updateTimeline").and.callThrough();
+      Timeline.updateTimeline("timelineid", data, callback);
+      expect(Timeline.updateTimeline).toHaveBeenCalled();
+      expect(Timeline.updateTimeline).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
+      expect(function() {
+        Timeline.updateTimeline("timelineid", data, callback);
+      }).not.toThrow();
+    });
+
     it("should provide getCard method", function() {
-      spyOn(Timeline, "getCard").and.callThrough();;
+      spyOn(Timeline, "getCard").and.callThrough();
       Timeline.getCard("timelineid", "cardid", callback);
       expect(Timeline.getCard).toHaveBeenCalled();
       expect(Timeline.getCard).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
@@ -363,7 +357,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide getCards method", function() {
-      spyOn(Timeline, "getCards").and.callThrough();;
+      spyOn(Timeline, "getCards").and.callThrough();
       Timeline.getCards("timelineid", callback);
       expect(Timeline.getCards).toHaveBeenCalled();
       expect(Timeline.getCards).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
@@ -373,7 +367,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide createCard method", function() {
-      spyOn(Timeline, "createCard").and.callThrough();;
+      spyOn(Timeline, "createCard").and.callThrough();
       Timeline.createCard("timelineid", data, callback);
       expect(Timeline.createCard).toHaveBeenCalled();
       expect(Timeline.createCard).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
@@ -393,7 +387,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide deleteCard method", function() {
-      spyOn(Timeline, "deleteCard").and.callThrough();;
+      spyOn(Timeline, "deleteCard").and.callThrough();
       Timeline.deleteCard("timelineid", "cardid", callback);
       expect(Timeline.deleteCard).toHaveBeenCalled();
       expect(Timeline.deleteCard).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
@@ -403,7 +397,7 @@ describe("LS-JS-SDK", function() {
     });
 
     it("should provide getComments method", function() {
-      spyOn(Timeline, "getComments").and.callThrough();;
+      spyOn(Timeline, "getComments").and.callThrough();
       Timeline.getComments("timelineid", "cardid", callback);
       expect(Timeline.getComments).toHaveBeenCalled();
       expect(Timeline.getComments).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Function));
@@ -412,8 +406,28 @@ describe("LS-JS-SDK", function() {
       }).not.toThrow();
     });
 
+    it("should provide getComment method", function() {
+      spyOn(Timeline, "getComment").and.callThrough();
+      Timeline.getComment("timelineid", "cardid", "comentId", callback);
+      expect(Timeline.getComment).toHaveBeenCalled();
+      expect(Timeline.getComment).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.getComment("timelineid", "cardid", "comentId", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide deleteComment method", function() {
+      spyOn(Timeline, "deleteComment").and.callThrough();
+      Timeline.deleteComment("timelineid", "cardid", "comentId", callback);
+      expect(Timeline.deleteComment).toHaveBeenCalled();
+      expect(Timeline.deleteComment).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(String), jasmine.any(Function));
+      expect(function() {
+        Timeline.deleteComment("timelineid", "cardid", "comentId", callback);
+      }).not.toThrow();
+    });
+
     it("should provide createComment method", function() {
-      spyOn(Timeline, "createComment").and.callThrough();;
+      spyOn(Timeline, "createComment").and.callThrough();
       Timeline.createComment("timelineid", "cardid", data, callback);
       expect(Timeline.createComment).toHaveBeenCalled();
       expect(Timeline.createComment).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
