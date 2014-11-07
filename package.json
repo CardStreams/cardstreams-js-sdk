@@ -8,6 +8,7 @@
   "scripts": {
     "test": "grunt test"
   },
+  "author": "Lifestreams.com, Lukas Nowacki <lucjan.nowacki@gmail.com>",
   "dependencies": {
     "grunt": "0.4.1",
     "grunt-contrib-jshint": "0.10.0",
