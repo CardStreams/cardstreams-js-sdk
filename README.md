@@ -43,6 +43,7 @@ Additionally, initialisation method accepts the following optional parameters:
 
 | param name | description | type
 | --- | --- | --- |
+| api_user | API user, passed as one of the stringified objects: {"username":"username"} or {"userId":"userId"} | String |
 | api_url | API endpoint URL, by default pointing to the latest production instance | String |
 | socket_url | Socket endpoint URL, by default pointing to the latest production instance | String |
 
