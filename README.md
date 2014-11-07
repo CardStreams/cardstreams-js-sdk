@@ -5,7 +5,7 @@ JavaScript Http Wrapper provides a set of methods to interact with Lifestreams A
 
 Prerequisites
 -------------
-In order to be able to use the SDK and the API, access key and api id need to be generated in the Developer Portal which can be accessed at http://dev-lifestreams.devportal.apigee.com
+In order to be able to use the SDK and the API, consumer key to be generated in the Developer Portal which can be accessed at http://dev-lifestreams.devportal.apigee.com
 
 Installation
 -----------
@@ -31,7 +31,7 @@ When done and successful, the whole package will be bundled in */build* director
 
 Configuration
 -------------
-Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised with unique *api_key* and *api_id* mentioned in the Prerequisites section of this document.
+Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised with unique *consumer_key* mentioned in the Prerequisites section of this document.
 
 ```javascript
 LS.init({
