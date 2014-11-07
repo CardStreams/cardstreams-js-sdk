@@ -119,6 +119,16 @@ describe("LS-JS-SDK", function() {
       expect(req.requestHeaders["X-Lifestreams-ConsumerKey"]).toBe("SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh");
     });
 
+    it("should set the X-Lifestreams-User request header", function() {
+      Timeline.init({
+        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh",
+        api_user: "{'username':'lukas'}"
+      });
+      Timeline.api("/t", "get", function(){});
+      req = jasmine.Ajax.requests.mostRecent();
+      expect(req.requestHeaders["X-Lifestreams-User"]).toBe("{'username':'lukas'}");
+    });
+
     it("should define an onreadystatechange handler", function() {
       var req = jasmine.Ajax.requests.mostRecent();
       expect(typeof req.onreadystatechange).toBe("function");
