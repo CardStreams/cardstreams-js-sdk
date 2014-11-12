@@ -20,25 +20,38 @@ describe("LS-JS-SDK", function() {
       spyOn(Timeline, "init");
 
       Timeline.init({
-        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh"
+        app_id: "91312294",
+        app_key: "9fce4bb6bc33d780002fda854e6aaa03"
       });
 
       expect(Timeline.init).toHaveBeenCalled();
     });
 
-    it("should not throw an Error when configuration object contains Consumer Key", function() {
+    it("should not throw an Error when configuration object contains APP Key and APP ID", function() {
 
       expect(function() {
         Timeline.init({
-          consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh"
+          app_id: "91312294",
+          app_key: "9fce4bb6bc33d780002fda854e6aaa03"
         });
       }).not.toThrow();
     });
 
-    it("should throw an Error when consumer_key is not provided", function() {
+    it("should throw an Error when app_key is not provided", function() {
 
       expect(function() {
-        Timeline.init({});
+        Timeline.init({
+          app_id: "91312294"
+        });
+      }).toThrow();
+    });
+
+    it("should throw an Error when app_id is not provided", function() {
+
+      expect(function() {
+        Timeline.init({
+          app_key: "9fce4bb6bc33d780002fda854e6aaa03"
+        });
       }).toThrow();
     });
 
@@ -60,7 +73,8 @@ describe("LS-JS-SDK", function() {
       };
 
       Timeline.init({
-        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh"
+        app_id: "91312294",
+        app_key: "9fce4bb6bc33d780002fda854e6aaa03"
       });
 
       Timeline.api("/url", "post", data, callback);
@@ -87,7 +101,8 @@ describe("LS-JS-SDK", function() {
       var url = "https://test/t";
 
       Timeline.init({
-        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh",
+        app_id: "91312294",
+        app_key: "9fce4bb6bc33d780002fda854e6aaa03",
         api_url: "https://test"
       });
 
@@ -115,13 +130,18 @@ describe("LS-JS-SDK", function() {
       expect(req.requestHeaders["Content-Type"]).toBe("application/json;charset=UTF-8");
     });
 
-    it("should set the X-Lifestreams-ConsumerKey request header", function() {
-      expect(req.requestHeaders["X-Lifestreams-ConsumerKey"]).toBe("SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh");
+    it("should set the X-Lifestreams-3scale-AppId request header", function() {
+      expect(req.requestHeaders["X-Lifestreams-3scale-AppId"]).toBe("91312294");
+    });
+
+    it("should set the X-Lifestreams-3scale-AppKey request header", function() {
+      expect(req.requestHeaders["X-Lifestreams-3scale-AppKey"]).toBe("9fce4bb6bc33d780002fda854e6aaa03");
     });
 
     it("should set the X-Lifestreams-User request header", function() {
       Timeline.init({
-        consumer_key: "SlNgHQlVduKKNWkezPxe0dfEHIP2dlTh",
+        app_id: "91312294",
+        app_key: "9fce4bb6bc33d780002fda854e6aaa03",
         api_user: "{'username':'lukas'}"
       });
       Timeline.api("/t", "get", function(){});

@@ -5,7 +5,7 @@ JavaScript Http Wrapper provides a set of methods to interact with Lifestreams A
 
 Prerequisites
 -------------
-In order to be able to use the SDK and the API, consumer key to be generated in the Developer Portal which can be accessed at http://dev-lifestreams.devportal.apigee.com
+In order to be able to use the SDK and the API, Application ID and Application Key need to be generated in the Developer Portal
 
 Installation
 -----------
@@ -31,11 +31,12 @@ When done and successful, the whole package will be bundled in */build* director
 
 Configuration
 -------------
-Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised with unique *consumer_key* mentioned in the Prerequisites section of this document.
+Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised with unique *app_id* and *app_key* mentioned in the Prerequisites section of this document.
 
 ```javascript
 LS.init({
-    consumer_key: "YOUR_CONSUMER_KEY"
+    app_id: "YOUR_3SCALE_APP_ID",
+    app_key: "YOUR_3SCALE_APP_KEY
 });
 ```
 
@@ -46,6 +47,8 @@ Additionally, initialisation method accepts the following optional parameters:
 | api_user | API user, passed as one of the stringified objects: {"username":"username"} or {"userId":"userId"} | String |
 | api_url | API endpoint URL, by default pointing to the latest production instance | String |
 | socket_url | Socket endpoint URL, by default pointing to the latest production instance | String |
+
+In order to be able to operate in different context (authenticated vs management) of the API, the init method returns an instance of the API object so it can be assigned to a namespace, if not required as a module.
 
 Usage
 -----
