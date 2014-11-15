@@ -9,10 +9,10 @@ In order to be able to use the SDK and the API, Application ID and Application K
 
 Installation
 -----------
-To use the SDK in a browser, please add the following snippet to your HTML page. It points to the latest, minified build distributed via CDN:
+To use the SDK in a browser, please add the following snippet to your HTML page. It should point to the latest, minified build distributed via CDN:
 
 ```html
-<script src="https://XXXXXXXXXXXXX/api.min.js"></script>
+<script src="https://WE-NEED-A-URL/api.min.js"></script>
 ```
 
 Alternatively, it can also be bundled with provided build tools in two simple steps executed from the root directory:
@@ -27,10 +27,18 @@ npm install
 grunt install
 ```
 
-When done and successful, the whole package will be bundled in */build* directory and available in both minified and un-minified formats as a standalone browserify package.
+You can also use the built version of the SDK included in this repo if you don't want to clone this and build it yourself. It should match the version we maintain on our CDN.
+
+When done and successful, the whole package will be bundled in */dist* directory and available in both minified and un-minified formats as a standalone browserify package.
 
 Configuration
 -------------
+Import the SDK on your web page where you want to use Timelines.
+
+```html
+<script src="js/ls-js-sdk/api.js"></script>
+```
+
 Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised with unique *app_id* and *app_key* mentioned in the Prerequisites section of this document.
 
 ```javascript
@@ -44,7 +52,7 @@ Additionally, initialisation method accepts the following optional parameters:
 
 | param name | description | type
 | --- | --- | --- |
-| api_user | API user, passed as one of the stringified objects: {"username":"username"} or {"userId":"userId"} | String |
+| api_user | API user, passed as one of the stringified objects: {"username":"username"} or {"userId":"userId"}. By adding this variable to init, you will be switching to user mode. Without it, you will be in developer mode. | String |
 | api_url | API endpoint URL, by default pointing to the latest production instance | String |
 | socket_url | Socket endpoint URL, by default pointing to the latest production instance | String |
 
@@ -53,7 +61,7 @@ In order to be able to operate in different context (authenticated vs management
 Usage
 -----
 ## LS.api()
-Make an api call to an existing enpoint and handle a reponse in a callback.
+Make an api call to an existing endpoint and handle a response in a callback.
 For available endpoints and their parameters please refer to Lifestreams Streaming API documentation.
 
 ### Parameters
@@ -86,7 +94,7 @@ LS.api("/timelines", "post", {
         console.log(response.error + ": " + response.message);
     } else {
         // handle successful response
-        console.log(response.name + " created successfuly!"
+        console.log(response.name + " created successfully!"
     }
 });
 ```
@@ -218,6 +226,17 @@ callback | A callback to handle errors and response data | Function | true
 
 ## LS.getCards()
 Obtain cards from a given timeline.
+
+```javascript
+LS.getCards("timelineId", Date.now(), "around", 20, "", true, true, true, 300, function(response){
+    if(!response.error){
+        console.log(response);
+    }else{
+        console.log("error", error);
+    }
+});
+```
+
 ### Parameters
 name | description | type | required | default
 --- | --- | --- | --- | ---
