@@ -388,9 +388,9 @@ describe("LS-JS-SDK", function() {
 
     it("should provide getCards method", function() {
       spyOn(Timeline, "getCards").and.callThrough();
-      Timeline.getCards("timelineid", callback);
+      Timeline.getCards("timelineId", Date.now(), "around", 10, "searchTxt", true, true, true, 300, callback);
       expect(Timeline.getCards).toHaveBeenCalled();
-      expect(Timeline.getCards).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
+      expect(Timeline.getCards).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Number), jasmine.any(String), jasmine.any(Number), jasmine.any(String), jasmine.any(Boolean), jasmine.any(Boolean), jasmine.any(Boolean), jasmine.any(Number),  jasmine.any(Function));
       expect(function() {
         Timeline.getCards("timelineid", callback);
       }).not.toThrow();
