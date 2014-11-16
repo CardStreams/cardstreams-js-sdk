@@ -227,6 +227,7 @@ callback | A callback to handle errors and response data | Function | true
 ## LS.getCards()
 Obtain cards from a given timeline.
 
+Example:
 ```javascript
 LS.getCards("timelineId", Date.now(), "around", 20, "", true, true, true, 300, function(response){
     if(!response.error){
