@@ -245,7 +245,6 @@ timelineID | A timeline ID string | String | true | -
 ts | Timestamp to use as a reference starting point within the timeline. By default, this takes the value of the current timestamp. | Number | false | now() 
 limit | Maximum amount of cards to return as a result of the streaming call. | Number | false | 20
 direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
-query | Query string used to filter through the timeline. This allows for textual search and other filtering. | String | false | -
 media_urls | Whether the response should contain publicly accessible URLs to media attached in the cards. Also note the parameter urls_ttl | Boolean | false | false 
 preview_urls | Whether the response should contain publicly accessible URLs to media previews in the cards. Also note the parameter urls_ttl | Boolean | false | false 
 thumb_urls | Whether the response should contain publicly accessible URLs to media thumbnails in the cards. Also note the parameter urls_ttl | Boolean | false | false 
