@@ -245,7 +245,11 @@ module.exports = {
     method: "POST"
   },
   "getCards": {
-    url: "/timelines/{id}/cards?ts={?ts}&direction={?direction}&limit={?limit}&q={?q}&media_urls={?media_urls}&preview_urls={?preview_urls}&thumb_urls={?thumb_urls}&urls_ttl={?urls_ttl}",
+    url: "/timelines/{id}/cards?ts={?ts}&limit={?limit}&direction={?direction}&media_urls={?media_urls}&preview_urls={?preview_urls}&thumb_urls={?thumb_urls}&urls_ttl={?urls_ttl}",
+    method: "GET"
+  },
+  "getCardsByQuery": {
+    url: "/timelines/{id}/cards?q={?q}&ts={?ts}&limit={?limit}&direction={?direction}&media_urls={?media_urls}&preview_urls={?preview_urls}&thumb_urls={?thumb_urls}&urls_ttl={?urls_ttl}",
     method: "GET"
   }
 };

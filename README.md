@@ -229,7 +229,7 @@ Obtain cards from a given timeline.
 
 Example:
 ```javascript
-LS.getCards("timelineId", Date.now(), "around", 20, "", true, true, true, 300, function(response){
+LS.getCards("timelineId", Date.now(), 20, "before", true, true, true, 300, function(response){
     if(!response.error){
         console.log(response);
     }else{
@@ -243,14 +243,43 @@ name | description | type | required | default
 --- | --- | --- | --- | ---
 timelineID | A timeline ID string | String | true | -
 ts | Timestamp to use as a reference starting point within the timeline. By default, this takes the value of the current timestamp. | Number | false | now() 
-direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
 limit | Maximum amount of cards to return as a result of the streaming call. | Number | false | 20
+direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
 query | Query string used to filter through the timeline. This allows for textual search and other filtering. | String | false | -
 media_urls | Whether the response should contain publicly accessible URLs to media attached in the cards. Also note the parameter urls_ttl | Boolean | false | false 
 preview_urls | Whether the response should contain publicly accessible URLs to media previews in the cards. Also note the parameter urls_ttl | Boolean | false | false 
 thumb_urls | Whether the response should contain publicly accessible URLs to media thumbnails in the cards. Also note the parameter urls_ttl | Boolean | false | false 
 urls_ttl | Only has effect when media_urls or preview_urls are enabled. This parameter allows to specify for how many seconds the publicly accessible URLs to attached media should remain valid. The TTL counter is independent for each response to a streaming request and starts counting down as soon as the response is produced. The maximum allowable value for this parameter is 86400 (equivalent to 24 hours) | Number | false | 300 |
 callback | A callback to handle errors and response data | Function | true | -
+
+## LS.getCardsByQuery()
+Obtain cards from a given timeline, based on a query.
+
+Example:
+```javascript
+LS.getCardsByQuery("timelineId", "query", Date.now(), 20, "before", true, true, true, 300, function(response){
+    if(!response.error){
+        console.log(response);
+    }else{
+        console.log("error", error);
+    }
+});
+```
+
+### Parameters
+name | description | type | required | default
+--- | --- | --- | --- | ---
+timelineID | A timeline ID string | String | true | -
+query | Query string used to filter through the timeline. This allows for textual search and other filtering. | String | false | -
+ts | Timestamp to use as a reference starting point within the timeline. By default, this takes the value of the current timestamp. | Number | false | now()
+limit | Maximum amount of cards to return as a result of the streaming call. | Number | false | 20
+direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
+media_urls | Whether the response should contain publicly accessible URLs to media attached in the cards. Also note the parameter urls_ttl | Boolean | false | false
+preview_urls | Whether the response should contain publicly accessible URLs to media previews in the cards. Also note the parameter urls_ttl | Boolean | false | false
+thumb_urls | Whether the response should contain publicly accessible URLs to media thumbnails in the cards. Also note the parameter urls_ttl | Boolean | false | false
+urls_ttl | Only has effect when media_urls or preview_urls are enabled. This parameter allows to specify for how many seconds the publicly accessible URLs to attached media should remain valid. The TTL counter is independent for each response to a streaming request and starts counting down as soon as the response is produced. The maximum allowable value for this parameter is 86400 (equivalent to 24 hours) | Number | false | 300 |
+callback | A callback to handle errors and response data | Function | true | -
+
 
 ## LS.getCard()
 Retrieve contents of a card.
