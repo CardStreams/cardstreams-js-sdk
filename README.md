@@ -12,7 +12,7 @@ Installation
 To use the SDK in a browser, please add the following snippet to your HTML page. It should point to the latest, minified build distributed via CDN:
 
 ```html
-<script src="https://WE-NEED-A-URL/api.min.js"></script>
+<script src="https://assets.lifestreams.com/developer/js/api.min.js"></script>
 ```
 
 Alternatively, it can also be bundled with provided build tools in two simple steps executed from the root directory:
