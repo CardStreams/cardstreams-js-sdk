@@ -54,6 +54,30 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+    aws_s3: {
+      options: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        bucket: "assets.lifestreams.com",
+        access: "public-read",
+        params: { CacheControl: "max-age=300" }
+      },
+      assets: {
+        files: [
+          { expand: true, cwd: "dist/", src: "api.min.js", dest: "developer/", action: "upload" },
+          {
+            expand: true,
+            cwd: "dist/",
+            src: "api.min.js",
+            dest: "developer/",
+            action: "upload",
+            rename: function(dest, src) {
+              return dest + src.replace("api", "api-" + pkg.version);
+            }
+          }
+        ]
+      }
     }
   });
 
@@ -81,4 +105,10 @@ module.exports = function (grunt) {
     "uglify",
     "karma:unit"
   ]);
+
+  grunt.registerTask("publish", [
+    "install",
+    "aws_s3:assets"
+  ]);
+
 };
