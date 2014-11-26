@@ -115,8 +115,8 @@ function api(url, method, data, callback) {
 *
 * @return {Function} Callback with a stringified JSON request data for a given channel
 */
-function subscribe(channel, callback) {
-  var io = socket(socket_url, {query: "token=Lifestreams4U"});
+function subscribe(token, channel, callback) {
+  var io = socket(socket_url, {query: "token=" + token});
   io.on("connect", function() {
     io.emit("join", channel);
     io.on("cardEvent", function(room, data) {
@@ -250,6 +250,10 @@ module.exports = {
   },
   "getCardsByQuery": {
     url: "/timelines/{id}/cards?q={?q}&ts={?ts}&limit={?limit}&direction={?direction}&media_urls={?media_urls}&preview_urls={?preview_urls}&thumb_urls={?thumb_urls}&urls_ttl={?urls_ttl}",
+    method: "GET"
+  },
+  "getEventsToken": {
+    url: "/events",
     method: "GET"
   }
 };
