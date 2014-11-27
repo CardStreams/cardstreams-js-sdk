@@ -65,12 +65,12 @@ module.exports = function (grunt) {
       },
       assets: {
         files: [
-          { expand: true, cwd: "dist/", src: "api.min.js", dest: "developer/", action: "upload" },
+          { expand: true, cwd: "dist/", src: "api.min.js", dest: "developer/js/", action: "upload" },
           {
             expand: true,
             cwd: "dist/",
             src: "api.min.js",
-            dest: "developer/",
+            dest: "developer/js/",
             action: "upload",
             rename: function(dest, src) {
               return dest + src.replace("api", "api-" + pkg.version);

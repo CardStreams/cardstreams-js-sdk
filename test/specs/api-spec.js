@@ -476,5 +476,15 @@ describe("LS-JS-SDK", function() {
       }).not.toThrow();
     });
 
+    it("should provide getEventsToken method", function() {
+      spyOn(Timeline, "getEventsToken").and.callThrough();
+      Timeline.getEventsToken(callback);
+      expect(Timeline.getEventsToken).toHaveBeenCalled();
+      expect(Timeline.getEventsToken).toHaveBeenCalledWith(jasmine.any(Function));
+      expect(function() {
+        Timeline.getEventsToken(callback);
+      }).not.toThrow();
+    });
+
   });
 });
