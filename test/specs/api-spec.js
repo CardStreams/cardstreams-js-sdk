@@ -318,11 +318,21 @@ describe("LS-JS-SDK", function() {
 
     it("should provide getCards method", function() {
       spyOn(Timeline, "getCards").and.callThrough();
-      Timeline.getCards("timelineid", callback);
+      Timeline.getCards("timelineId", Date.now(), 10, "before", true, true, true, 300, callback);
       expect(Timeline.getCards).toHaveBeenCalled();
-      expect(Timeline.getCards).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Function));
+      expect(Timeline.getCards).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Number), jasmine.any(Number), jasmine.any(String), jasmine.any(Boolean), jasmine.any(Boolean), jasmine.any(Boolean), jasmine.any(Number),  jasmine.any(Function));
       expect(function() {
-        Timeline.getCards("timelineid", callback);
+        Timeline.getCards("timelineId", callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getCardsByQuery method", function() {
+      spyOn(Timeline, "getCardsByQuery").and.callThrough();
+      Timeline.getCardsByQuery("timelineId", "query", Date.now(), 10, "before", true, true, true, 300, callback);
+      expect(Timeline.getCardsByQuery).toHaveBeenCalled();
+      expect(Timeline.getCardsByQuery).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Number), jasmine.any(Number), jasmine.any(String), jasmine.any(Boolean), jasmine.any(Boolean), jasmine.any(Boolean), jasmine.any(Number),  jasmine.any(Function));
+      expect(function() {
+        Timeline.getCardsByQuery("timelineId", callback);
       }).not.toThrow();
     });
 
@@ -393,6 +403,16 @@ describe("LS-JS-SDK", function() {
       expect(Timeline.createComment).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), jasmine.any(Object), jasmine.any(Function));
       expect(function() {
         Timeline.createComment("timelineid", "cardid", data, callback);
+      }).not.toThrow();
+    });
+
+    it("should provide getEventsToken method", function() {
+      spyOn(Timeline, "getEventsToken").and.callThrough();
+      Timeline.getEventsToken(callback);
+      expect(Timeline.getEventsToken).toHaveBeenCalled();
+      expect(Timeline.getEventsToken).toHaveBeenCalledWith(jasmine.any(Function));
+      expect(function() {
+        Timeline.getEventsToken(callback);
       }).not.toThrow();
     });
 

@@ -1,6 +1,6 @@
 {
   "name": "ls-js-sdk",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Lifestreams/ls-js-sdk.git"
@@ -11,6 +11,7 @@
   "author": "Lifestreams.com, Lukas Nowacki <lucjan.nowacki@gmail.com>",
   "dependencies": {
     "grunt": "0.4.1",
+    "grunt-aws-s3": "0.9.4",
     "grunt-contrib-jshint": "0.10.0",
     "grunt-contrib-watch": "0.6.1",
     "grunt-contrib-clean": "0.6.0",
