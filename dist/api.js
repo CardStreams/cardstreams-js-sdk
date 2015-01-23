@@ -8,7 +8,7 @@ var Emitter=_dereq_("component-emitter");var inherit=_dereq_("component-inherit"
 (function (global){
 "use strict";
 
-var app_id, app_key, api_url, socket_url, app_token;
+var app_id, app_key, api_url, socket_url, app_token, api_user;
 
 var socket = require("./ext/socket.io-1.1.0");
 var glucose = require("ls-glucose");
@@ -16,9 +16,10 @@ var glucose = require("ls-glucose");
 /**
   * (Public) Function that initialises the SDK setting the configuration object
   * @param config {Object} Configuration object, which accepts following properties:
-  *   app_token {String} An authentication token
-  *   app_id {String} An API ID (required) DEPRECATED
-  *   app_key {String} An API Key (required) DEPRECATED
+  *   app_token {String} An authentication token (required if app_id and app_key not present)
+  *   app_id {String} An API ID (required if app_token not present)
+  *   app_key {String} An API Key (required if app_token not present)
+  *   api_user {String} User ID (optional)
   *   api_url {String} API URL (optional)
   *   socket_url {String} Socket URL (optional)
   *
@@ -47,6 +48,7 @@ function init(config) {
   // Default URLs to production servers
   api_url = config.api_url || "https://api.lifestreams.com/beta1";
   socket_url = config.socket_url || "https://api.lifestreams.com:5500";
+  api_user = config.api_user || null;
 
   return global.LS;
 }
@@ -85,12 +87,15 @@ function api(url, method, data, callback) {
   }
 
   if (app_token) {
-    xhr.setRequestHeader("Authorisation", "bearer " + app_token);
+    xhr.setRequestHeader("Authorization", "bearer " + app_token);
   } else {
     xhr.setRequestHeader("X-Lifestreams-3scale-AppId", app_id);
     xhr.setRequestHeader("X-Lifestreams-3scale-AppKey", app_key);
   }
 
+  if (api_user) {
+    xhr.setRequestHeader("X-Lifestreams-User", api_user);
+  }
 
   if (typeof data !== "function") {
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
