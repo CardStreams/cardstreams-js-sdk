@@ -45,7 +45,7 @@ You can also use the built version of the SDK included in this repo if you do no
 
 Configuration
 -------------
-Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised. It can be done twofold, depending on a usage scenario:
+Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised. There are currently two ways to implement the SDK, depending on a usage scenario:
 
 1. Secure implementation with access token.
 
