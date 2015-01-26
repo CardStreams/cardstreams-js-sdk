@@ -5,7 +5,7 @@ JavaScript Http Wrapper provides a set of methods to interact with Lifestreams A
 
 Prerequisites
 -------------
-In order to be able to use the SDK and the API, Application ID and Application Key need to be generated in the Developer Portal
+In order to be able to use the SDK and the API, Application ID and Application Key need to be generated in the Developer Portal.
 
 Installation
 -----------
@@ -27,36 +27,56 @@ npm install
 grunt install
 ```
 
-You can also use the built version of the SDK included in this repo if you don't want to clone this and build it yourself. It should match the version we maintain on our CDN.
-
 When done and successful, the whole package will be bundled in */dist* directory and available in both minified and un-minified formats as a standalone browserify package.
 
-Configuration
--------------
 Import the SDK on your web page where you want to use Timelines.
 
 ```html
 <script src="js/ls-js-sdk/api.js"></script>
 ```
 
-Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised with unique *app_id* and *app_key* mentioned in the Prerequisites section of this document.
+or for the minified version:
+
+```html
+<script src="js/ls-js-sdk/api.min.js"></script>
+```
+
+You can also use the built version of the SDK included in this repo if you do not wish to clone the repository and build it yourself. It should match the version we maintain on our CDN.
+
+Configuration
+-------------
+Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised. There are currently two ways to implement the SDK, depending on a usage scenario:
+
+1. Secure implementation with access token.
+
+```javascript
+LS.init({
+    app_token: "ACCESS_TOKEN"
+});
+```
+
+To get instructions on how to generate an access token, please refer to [API Documentation link](https://developer.lifestreams.com/docs#!/Lifestreams/oauthGetToken)
+
+2. Implementation with App ID and App Key exposed.
+
+There are times when a securely authenticated implementation is not required, for example when in an intranet or development environment. In those cases, instead of providing a token, the SDK can be initialised by passing an *app_id* and *app_key* directly to the initialisation object:
 
 ```javascript
 LS.init({
     app_id: "YOUR_3SCALE_APP_ID",
-    app_key: "YOUR_3SCALE_APP_KEY
+    app_key: "YOUR_3SCALE_APP_KEY"
 });
 ```
+
+Important thing to remember is, when in browser context, that those credentials will be exposed in the application code. It is highly recommended to not follow this approach for public facing solutions.
 
 Additionally, initialisation method accepts the following optional parameters:
 
 | param name | description | type
 | --- | --- | --- |
-| api_user | API user, passed as one of the stringified objects: {"username":"username"} or {"userId":"userId"}. By adding this variable to init, you will be switching to user mode. Without it, you will be in developer mode. | String |
 | api_url | API endpoint URL, by default pointing to the latest production instance | String |
 | socket_url | Socket endpoint URL, by default pointing to the latest production instance | String |
 
-In order to be able to operate in different context (authenticated vs management) of the API, the init method returns an instance of the API object so it can be assigned to a namespace, if not required as a module.
 
 Usage
 -----
