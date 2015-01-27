@@ -1,7 +1,7 @@
 Lifestreams JS SDK
 =========
 
-JavaScript Http Wrapper provides a set of methods to interact with Lifestreams API in a browser context.
+JavaScript HTTP Wrapper provides a set of methods to interact with Lifestreams API in a browser context.
 
 Prerequisites
 -------------
