@@ -1,7 +1,7 @@
 Lifestreams JS SDK
 =========
 
-JavaScript HTTP Wrapper provides a set of methods to interact with Lifestreams API in a browser context.
+JavaScript SDK provides set of methods and properties to store, manage and retrieve cards in an activity stream/timeline via Lifestreams Technologies Corporation's RESTful API.
 
 Prerequisites
 -------------
