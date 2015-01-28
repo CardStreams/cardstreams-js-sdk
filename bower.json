@@ -3,17 +3,19 @@
   "version": "1.0.0",
   "homepage": "https://github.com/Lifestreams/ls-js-sdk",
   "authors": [
-    "Lukas Nowacki <lucjan.nowacki@gmail.com>"
+    "Lifestreams Technologies Corporation"
   ],
-  "description": "JavaScript HTTP Wrapper provides a set of methods to interact with Lifestreams API in a browser context.",
+  "description": "JavaScript SDK provides set of methods and properties to store, manage and retrieve cards in an activity stream/timeline via Lifestreams Technologies Corporation's RESTful API.",
   "main": "dist/api.min.js",
   "moduleType": [
     "globals"
   ],
   "keywords": [
-    "lifestreams",
-    "timeline",
-    "api"
+    "card",
+    "cards",
+    "order",
+    "feed",
+    "activity stream"
   ],
   "license": "MIT",
   "ignore": [
