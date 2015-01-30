@@ -161,7 +161,7 @@ Update a timeline.
 name | description | type | required
 --- | --- | --- | ---
 timelineID | A timeline ID string | String | true
-data | The request body should contain the following properties: *name*: A name or title (not necessarily unique) for the timeline (required); *description*: (optional) A description of the timeline | Object | true
+data | The request body can contain the following properties: *name*: A name or title (not necessarily unique) for the timeline; *description*: A description of the timeline | Object | true
 callback | A callback to handle errors and response data | Function | true
 
 ## LS.getCards()
