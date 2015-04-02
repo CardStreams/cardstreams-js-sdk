@@ -1,18 +1,18 @@
-Lifestreams JS SDK
+CardStreams JS SDK
 =========
 
-JavaScript SDK provides set of methods and properties to store, manage and retrieve cards in an activity stream/timeline via Lifestreams Technologies Corporation's RESTful API.
+JavaScript SDK provides set of methods and properties to store, manage and retrieve cards in an activity stream via CardStreams RESTful API.
 
 Prerequisites
 -------------
-In order to be able to use the SDK and the API, Application ID and Application Key need to be generated in the Developer Portal.
+In order to be able to use the SDK and the API, Application ID and Application Key need to be generated in the [Developer Portal](https://developer.cardstreams.io).
 
 Installation
 -----------
 To use the SDK in a browser, please add the following snippet to your HTML page. It should point to the latest, minified build distributed via CDN:
 
 ```html
-<script src="https://assets.lifestreams.com/developer/js/api.min.js"></script>
+<script src="https://assets.cardstreams.io/developer/js/api.min.js"></script>
 ```
 
 Alternatively, it can also be bundled with provided build tools in two simple steps executed from the root directory:
@@ -29,48 +29,48 @@ grunt install
 
 When done and successful, the whole package will be bundled in */dist* directory and available in both minified and un-minified formats as a standalone browserify package.
 
-Import the SDK on your web page where you want to use Timelines.
+Import the SDK on your web page where you want to use CardStreams.
 
 ```html
-<script src="js/ls-js-sdk/api.js"></script>
+<script src="js/cardstreams-js-sdk/api.js"></script>
 ```
 
 or for the minified version:
 
 ```html
-<script src="js/ls-js-sdk/api.min.js"></script>
+<script src="js/cardstreams-js-sdk/api.min.js"></script>
 ```
 
 You can also use the built version of the SDK included in this repo if you do not wish to clone the repository and build it yourself. It should match the version we maintain on our CDN.
 
 Configuration
 -------------
-Once the SDK is imported, it will expose a global LS namespace and it needs to be initialised. There are currently two ways to implement the SDK, depending on a usage scenario:
+Once the SDK is imported, it will expose a global CS namespace and it needs to be initialised. There are currently two ways to implement the SDK, depending on a usage scenario:
 
 1. Secure implementation with access token.
 
 ```javascript
-LS.init({
+CS.init({
     app_token: "ACCESS_TOKEN"
 });
 ```
 
-To get instructions on how to generate an access token, please refer to [API Documentation link](https://developer.lifestreams.com/docs#!/Lifestreams/oauthGetToken)
+To get instructions on how to generate an access token, please refer to [API Documentation link](https://developer.cardstreams.io/docs#!/Lifestreams/oauthGetToken)
 
 2. Implementation with App ID and App Key exposed.
 
-There are times when a securely authenticated implementation is not required, for example when in an intranet or development environment. In those cases, instead of providing a token, the SDK can be initialised by passing an *app_id* and *app_key* directly to the initialisation object:
+There are times when a securely authenticated implementation is not required, for example when in an intranet or development environment. In those cases, instead of providing a token, the SDK can be initialised by passing an *app_id* and *app_key* directly to the initialization object:
 
 ```javascript
-LS.init({
-    app_id: "YOUR_3SCALE_APP_ID",
-    app_key: "YOUR_3SCALE_APP_KEY"
+CS.init({
+    app_id: "YOUR_CARDSTREAMS_APP_ID",
+    app_key: "YOUR_CARDSTREAMS_APP_KEY"
 });
 ```
 
 Important thing to remember is, when in browser context, that those credentials will be exposed in the application code. It is highly recommended to not follow this approach for public facing solutions.
 
-Additionally, initialisation method accepts the following optional parameters:
+Additionally, initialization method accepts the following optional parameters:
 
 | param name | description | type
 | --- | --- | --- |
@@ -80,7 +80,7 @@ Additionally, initialisation method accepts the following optional parameters:
 
 Usage
 -----
-## LS.api()
+## CS.api()
 Make an api call to an existing endpoint and handle a response in a callback.
 For available endpoints and their parameters please refer to Lifestreams Streaming API documentation.
 
@@ -92,22 +92,22 @@ method | Http request method | ENUM: GET, POST, PATCH, DELETE | true
 data | Data object to pass to an api call | Object | false
 callback | A JavaScript callback method to handle the response | Function | true
 ### Examples
-Retrieve a list of timelines
+Retrieve a list of streams
 
 ```javascript
-LS.api("/timelines", "get", function(response) {
+CS.api("/streams", "get", function(response) {
     // do something with a response
     response.forEach(function(item) {
-        console.log("Timeline name: " + item.name);
+        console.log("Stream name: " + item.name);
     }):
 });
 ```
 
-Create a new timeline
+Create a new stream
 
 ```javascript
-LS.api("/timelines", "post", {
-    "name": "My random Timeline name"
+CS.api("/streams", "post", {
+    "name": "My random Stream name"
 }, function(response) {
     if (response.error) {
         // handle error
@@ -119,57 +119,57 @@ LS.api("/timelines", "post", {
 });
 ```
 
-## LS.getTimelines()
-Retrieve a list of timelines available for authenticated user.
+## CS.getStreams()
+Retrieve a list of streams available for authenticated user.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
 callback | A callback to handle errors and response data | Function | true
 
-## LS.getTimeline()
-Retrieve information about a timeline.
+## CS.getStream()
+Retrieve information about a stream.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.createTimeline()
-Create a new timeline.
+## CS.createStream()
+Create a new stream.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-data | Create a new timeline. The request body should contain the following properties: *name*: A name or title (not necessarily unique) for the timeline (required); *description*: (optional) A description of the timeline | Object | true
+data | Create a new stream. The request body should contain the following properties: *name*: A name or title (not necessarily unique) for the stream (required); *description*: (optional) A description of the stream | Object | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.deleteTimeline()
-Delete a timeline.
+## CS.deleteStream()
+Delete a stream.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.updateTimeline()
-Update a timeline.
+## CS.updateStream()
+Update a stream.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
-data | The request body can contain the following properties: *name*: A name or title (not necessarily unique) for the timeline; *description*: A description of the timeline | Object | true
+streamID | A stream ID string | String | true
+data | The request body can contain the following properties: *name*: A name or title (not necessarily unique) for the stream; *description*: A description of the stream | Object | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.getCards()
-Obtain cards from a given timeline.
+## CS.getCards()
+Obtain cards from a given stream.
 
 Example:
 ```javascript
-LS.getCards("timelineId", Date.now(), 20, "before", true, true, true, 300, function(response){
+CS.getCards("streamId", Date.now(), 20, "before", true, true, true, 300, function(response){
     if(!response.error){
         console.log(response);
     }else{
@@ -181,8 +181,8 @@ LS.getCards("timelineId", Date.now(), 20, "before", true, true, true, 300, funct
 ### Parameters
 name | description | type | required | default
 --- | --- | --- | --- | ---
-timelineID | A timeline ID string | String | true | -
-ts | Timestamp to use as a reference starting point within the timeline. By default, this takes the value of the current timestamp. | Number | false | now() 
+streamID | A stream ID string | String | true | -
+ts | Timestamp to use as a reference starting point within the stream. By default, this takes the value of the current timestamp. | Number | false | now() 
 limit | Maximum amount of cards to return as a result of the streaming call. | Number | false | 20
 direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
 media_urls | Whether the response should contain publicly accessible URLs to media attached in the cards. Also note the parameter urls_ttl | Boolean | false | false 
@@ -191,12 +191,12 @@ thumb_urls | Whether the response should contain publicly accessible URLs to med
 urls_ttl | Only has effect when media_urls or preview_urls are enabled. This parameter allows to specify for how many seconds the publicly accessible URLs to attached media should remain valid. The TTL counter is independent for each response to a streaming request and starts counting down as soon as the response is produced. The maximum allowable value for this parameter is 86400 (equivalent to 24 hours) | Number | false | 300 |
 callback | A callback to handle errors and response data | Function | true | -
 
-## LS.getCardsByQuery()
-Obtain cards from a given timeline, based on a query.
+## CS.getCardsByQuery()
+Obtain cards from a given stream, based on a query.
 
 Example:
 ```javascript
-LS.getCardsByQuery("timelineId", "query", Date.now(), 20, "before", true, true, true, 300, function(response){
+CS.getCardsByQuery("streamId", "query", Date.now(), 20, "before", true, true, true, 300, function(response){
     if(!response.error){
         console.log(response);
     }else{
@@ -208,9 +208,9 @@ LS.getCardsByQuery("timelineId", "query", Date.now(), 20, "before", true, true, 
 ### Parameters
 name | description | type | required | default
 --- | --- | --- | --- | ---
-timelineID | A timeline ID string | String | true | -
-query | Query string used to filter through the timeline. This allows for textual search and other filtering. | String | false | -
-ts | Timestamp to use as a reference starting point within the timeline. By default, this takes the value of the current timestamp. | Number | false | now()
+streamID | A stream ID string | String | true | -
+query | Query string used to filter through the stream. This allows for textual search and other filtering. | String | false | -
+ts | Timestamp to use as a reference starting point within the stream. By default, this takes the value of the current timestamp. | Number | false | now()
 limit | Maximum amount of cards to return as a result of the streaming call. | Number | false | 20
 direction | Direction to take from the provided starting timestamp. This parameter controls whether to fetch cards from the past, from the future or around the given timestamp. | ENUM: around, before, after | false | around
 media_urls | Whether the response should contain publicly accessible URLs to media attached in the cards. Also note the parameter urls_ttl | Boolean | false | false
@@ -220,80 +220,80 @@ urls_ttl | Only has effect when media_urls or preview_urls are enabled. This par
 callback | A callback to handle errors and response data | Function | true | -
 
 
-## LS.getCard()
+## CS.getCard()
 Retrieve contents of a card.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 cardID | A card ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.createCard()
-Add card to a timeline.
+## CS.createCard()
+Add card to a stream.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 data | A data object containing information about a card. | Object | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.updateCard()
+## CS.updateCard()
 Modify contents of a card.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 cardId | A cardID string | String | true
 data | A data object containing modified information about a card. | Object | true 
 callback | A callback to handle errors and response data | Function | true
 
-## LS.getComments()
+## CS.getComments()
 Retrieve comments for a given card.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 cardID | A card ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.getComment()
+## CS.getComment()
 Retrieve a single comment.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 cardID | A card ID string | String | true
 commentID | A comment ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.deleteComment()
+## CS.deleteComment()
 Delete a comment.
 
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 cardID | A card ID string | String | true
 commentID | A comment ID string | String | true
 callback | A callback to handle errors and response data | Function | true
 
-## LS.createComment()
+## CS.createComment()
 Create a comment and attach it to a given card.
 ### Parameters
 name | description | type | required
 --- | --- | --- | ---
-timelineID | A timeline ID string | String | true
+streamID | A stream ID string | String | true
 cardID | A card ID string | String | true
 data | A data object containing modified information about a card. | Object | true 
 callback | A callback to handle errors and response data | Function | true
 
-## LS.subscribe()
+## CS.subscribe()
 Establish a real time socket connection to be notified about various data events in the API, depending on the channel subscribed. 
 
 ### Parameters
@@ -306,7 +306,7 @@ callback | A JavaScript callback method to handle the response | Function | true
 ### /cards channel
 #### created
 
-Indicates a new card has been created for a given timeline, providing a full JSON object with the card data (see API docs)
+Indicates a new card has been created for a given stream, providing a full JSON object with the card data (see API docs)
 
 Response 200 (application/json)
 
@@ -422,7 +422,7 @@ Response 200 (application/json)
 Get notified about new cards.
 
 ```javascript
-LS.subscribe("/cards/53ea722eecb5669c1d000013", function(ev) {
+CS.subscribe("/cards/53ea722eecb5669c1d000013", function(ev) {
     // we're only interested in *created* event in this example
     if (ev.type === "created") {
       console.log(ev.data)
