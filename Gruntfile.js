@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           "dist/api.js": [
-            "lib/ls-js-sdk.js"
+            "lib/cardstreams-js-sdk.js"
           ]
         },
         options: {
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
             }
           ],
           browserifyOptions: {
-            standalone: "LS"
+            standalone: "CS"
           }
         }
       }
@@ -59,7 +59,7 @@ module.exports = function (grunt) {
       options: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        bucket: "assets.lifestreams.com",
+        bucket: "assets.cardstreams.io",
         access: "public-read",
         params: { CacheControl: "max-age=300" }
       },

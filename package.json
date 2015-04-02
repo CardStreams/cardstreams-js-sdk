@@ -1,14 +1,14 @@
 {
-  "name": "ls-js-sdk",
+  "name": "cardstreams-js-sdk",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lifestreams/ls-js-sdk.git"
+    "url": "https://github.com/CardStreams/cardstreams-js-sdk.git"
   },
   "scripts": {
     "test": "grunt test"
   },
-  "author": "Lifestreams.com, Lukas Nowacki <lucjan.nowacki@gmail.com>",
+  "author": "https://developer.cardstreams.io",
   "dependencies": {
     "grunt": "0.4.1",
     "grunt-aws-s3": "0.9.4",
@@ -23,6 +23,6 @@
     "karma-jasmine-ajax": "~0.1.4",
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-browserify": "0.2.1",
-    "ls-glucose": "lifestreams/ls-glucose"
+    "ls-glucose": "CardStreams/ls-glucose"
   }
 }

@@ -1,0 +1,32 @@
+{
+  "name": "cardstreams-js-sdk",
+  "version": "1.0.0",
+  "homepage": "https://github.com/CardStreams/cardstreams-js-sdk",
+  "authors": [
+    "https://developer.cardstreams.io"
+  ],
+  "description": "JavaScript SDK provides set of methods and properties to store, manage and retrieve cards in an activity stream via CardStreams RESTful API.",
+  "main": "dist/api.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "card",
+    "cards",
+    "cardify",
+    "feed",
+    "feeds",
+    "activity stream",
+    "activity streams",
+    "stream",
+    "streams"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "test",
+    "coverage"
+  ]
+}
