@@ -84,7 +84,6 @@ function api(url, method, data, callback) {
     xhr.setRequestHeader("X-Lifestreams-3scale-AppId", app_id);
     xhr.setRequestHeader("X-Lifestreams-3scale-AppKey", app_key);
   }
-
   if (typeof data !== "function") {
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   }
