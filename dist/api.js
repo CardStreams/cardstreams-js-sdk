@@ -84,6 +84,7 @@ function api(url, method, data, callback) {
     xhr.setRequestHeader("X-Lifestreams-3scale-AppId", app_id);
     xhr.setRequestHeader("X-Lifestreams-3scale-AppKey", app_key);
   }
+
   if (typeof data !== "function") {
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   }
@@ -158,6 +159,7 @@ module.exports.subscribe = subscribe;
 
 // Assign module to global "CS" namespace
 global.CS = module.exports;
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./ext/socket.io-1.1.0":2,"./routes":3,"ls-glucose":4}],2:[function(require,module,exports){
 (function (global){
