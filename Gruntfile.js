@@ -59,7 +59,7 @@ module.exports = function (grunt) {
       options: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        bucket: "assets.cardstreams.io",
+        bucket: "assets.lifestreams.com",
         access: "public-read",
         params: { CacheControl: "max-age=300" }
       },
