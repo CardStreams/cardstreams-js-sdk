@@ -2,8 +2,27 @@ module.exports = function (grunt) {
   "use strict";
 
   var pkg = grunt.file.readJSON("package.json");
+  grunt.loadNpmTasks("grunt-bump");
 
   grunt.initConfig({
+    bump: {
+      options:{
+        files: ["bower.json", "package.json"],
+        updateConfigs: [],
+        commit: true,
+        commitFiles: ["bower.json", "package.json"],
+        commitMessage: "Release v%VERSION%",
+        createTag: true,
+        tagName: "v%VERSION%",
+        tagMessage: "Version %VERSION%",
+        push: true,
+        pushTo: "origin",
+        gitDescribeOptions: "--tags --always --abbrev=1 --dirty=-d",
+        globalReplace: false,
+        prereleaseName: false,
+        regExp: false
+      }
+    },
     pkg: pkg,
     watch: {
       js: {
@@ -23,7 +42,7 @@ module.exports = function (grunt) {
     uglify: {
       my_target: {
         files: {
-          "dist/api.min.js": ["dist/api.js"]
+          "dist/cs-api.min.js": ["dist/cs-api.js"]
         }
       }
     },
@@ -35,7 +54,7 @@ module.exports = function (grunt) {
     browserify: {
       dist: {
         files: {
-          "dist/api.js": [
+          "dist/cs-api.js": [
             "lib/cardstreams-js-sdk.js"
           ]
         },
@@ -65,15 +84,15 @@ module.exports = function (grunt) {
       },
       assets: {
         files: [
-          { expand: true, cwd: "dist/", src: "api.min.js", dest: "developer/js/", action: "upload" },
+          { expand: true, cwd: "dist/", src: "cs-api.min.js", dest: "developer/js/", action: "upload" },
           {
             expand: true,
             cwd: "dist/",
-            src: "api.min.js",
+            src: "cs-api.min.js",
             dest: "developer/js/",
             action: "upload",
             rename: function(dest, src) {
-              return dest + src.replace("api", "api-" + pkg.version);
+              return dest + src.replace("cs-api", "cs-api-" + pkg.version);
             }
           }
         ]
