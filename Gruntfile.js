@@ -92,7 +92,8 @@ module.exports = function (grunt) {
             dest: "developer/js/",
             action: "upload",
             rename: function(dest, src) {
-              return dest + src.replace("cs-api", "cs-api-" + pkg.version);
+              var pkg_now = grunt.file.readJSON("package.json");
+              return dest + src.replace("cs-api", "cs-api-" + pkg_now.version);
             }
           }
         ]
@@ -127,6 +128,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask("publish", [
     "install",
+    "bump",
     "aws_s3:assets"
   ]);
 
