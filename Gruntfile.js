@@ -89,7 +89,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: "dist/",
-            src: "cs-api.min.js",
+            src: "cs-api*.js",
             dest: "developer/js/",
             action: "upload",
             rename: function(dest, src) {
