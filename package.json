@@ -1,6 +1,6 @@
 {
   "name": "cardstreams-js-sdk",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/CardStreams/cardstreams-js-sdk.git"

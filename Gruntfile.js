@@ -85,10 +85,11 @@ module.exports = function (grunt) {
       assets: {
         files: [
           { expand: true, cwd: "dist/", src: "cs-api.min.js", dest: "developer/js/", action: "upload" },
+          { expand: true, cwd: "dist/", src: "cs-api.js", dest: "developer/js/", action: "upload" },
           {
             expand: true,
             cwd: "dist/",
-            src: "cs-api.min.js",
+            src: "cs-api*.js",
             dest: "developer/js/",
             action: "upload",
             rename: function(dest, src) {
