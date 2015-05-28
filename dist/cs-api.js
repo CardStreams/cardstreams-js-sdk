@@ -40,7 +40,7 @@ function init(config) {
 
   // Default URLs to production servers
   api_url = config.api_url || "https://api.cardstreams.io/v1";
-  socket_url = config.socket_url || "https://api.cardstreams.io:5500";
+  socket_url = config.socket_url || "https://push.cardstreams.io";
 
   return global.CS;
 }
